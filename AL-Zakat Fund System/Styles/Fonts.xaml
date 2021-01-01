@@ -6,6 +6,9 @@
     <FontFamily x:Key="LatoThin">pack://appliction;,,,/Fonts/#Lato Thin</FontFamily>
     <FontFamily x:Key="LatoRegular">pack://appliction;,,,/Fonts/#Lato Regular</FontFamily>
     <FontFamily x:Key="LatoBold">pack://appliction;,,,/Fonts/#Lato Bold</FontFamily>
+    <FontFamily x:Key="AdobeArabicRegular">pack://appliction;,,,/Fonts/#AdobeArabic-Regular</FontFamily>
+    <FontFamily x:Key="AdobeArabicBold">pack://appliction;,,,/Fonts/#AdobeArabic-Bold</FontFamily>
+    <FontFamily x:Key="AdobeArabicBoldItalic">pack://appliction;,,,/Fonts/#AdobeArabic-BoldItalic</FontFamily>
     <FontFamily x:Key="FontAwesome5BrandsRegular">pack://appliction;,,,/Fonts/#Font Awesome 5 Brands Regular</FontFamily>
     <FontFamily x:Key="FontAwesome5Duotone">pack://appliction;,,,/Fonts/#Font Awesome 5 Duotone Solid</FontFamily>
     <FontFamily x:Key="FontAwesome5ProLight">pack://appliction;,,,/Fonts/#Font Awesome 5 Pro Light</FontFamily>

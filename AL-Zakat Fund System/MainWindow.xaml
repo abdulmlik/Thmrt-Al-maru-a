@@ -59,32 +59,32 @@
             </Menu.ItemsPanel>
 
             <MenuItem Header="_ملف" HorizontalAlignment="Left">
-                <MenuItem Header="_تسجيل الخروج" Command="{Binding LogoutCommand}"  >
+                <MenuItem  Header="_تسجيل الخروج" Command="{Binding LogoutCommand}"  >
                     <MenuItem.Icon>
-                        <TextBlock Text="&#xf2f5;" FontFamily="{StaticResource FontAwesome5ProLight}" />
+                        <TextBlock  FontSize="{StaticResource FontSizeSmall}"  Text="&#xf2f5;" FontFamily="{StaticResource FontAwesome5ProLight}" />
                     </MenuItem.Icon>
                 </MenuItem>
                 <Separator />
                 <MenuItem Header="_إنشاء نسخة احتياطية" Command="{Binding DatabaseBackupCommand}" >
                     <MenuItem.Icon>
-                        <TextBlock Text="&#xf56e;" FontFamily="{StaticResource FontAwesome5ProLight}" />
+                        <TextBlock Text="&#xf56e;" FontSize="{StaticResource FontSizeSmall}" FontFamily="{StaticResource FontAwesome5ProLight}" />
                     </MenuItem.Icon>
                 </MenuItem>
                 <MenuItem Header="_إستعادة نسخة محفوظة" Command="{Binding DatabaseRestoreCommand}" >
                     <MenuItem.Icon>
-                        <TextBlock Text="&#xf56f;" FontFamily="{StaticResource FontAwesome5ProLight}" />
+                        <TextBlock Text="&#xf56f;" FontSize="{StaticResource FontSizeSmall}" FontFamily="{StaticResource FontAwesome5ProLight}" />
                     </MenuItem.Icon>
                 </MenuItem>
                 <Separator />
                 <MenuItem Header="_فحص حالة الاتصال بالخادم" Command="{Binding ContactStatusCommand}" >
                     <MenuItem.Icon>
-                        <TextBlock Text="&#xf233;" FontFamily="{StaticResource FontAwesome5ProLight}" />
+                        <TextBlock Text="&#xf233;"  FontSize="{StaticResource FontSizeSmall}" FontFamily="{StaticResource FontAwesome5ProLight}" />
                     </MenuItem.Icon>
                 </MenuItem>
                 <Separator />
                 <MenuItem Header="_خروج" Command="{Binding CloseCommand}" >
                     <MenuItem.Icon>
-                        <TextBlock Text="&#xf011;" FontFamily="{StaticResource FontAwesome5ProLight}" />
+                        <TextBlock Text="&#xf011;" FontSize="{StaticResource FontSizeSmall}" FontFamily="{StaticResource FontAwesome5ProLight}" />
                     </MenuItem.Icon>
                 </MenuItem>
             </MenuItem>
@@ -96,22 +96,22 @@
                 </MenuItem>
                 <MenuItem Command="{Binding PageViewAccountDataCommand}" Header="_إدارة المحتاجين"  >
                     <MenuItem.Icon>
-                        <TextBlock Text="&#xf64b;" FontFamily="{StaticResource FontAwesome5ProLight}" />
+                        <TextBlock Text="&#xf64b;" FontFamily="{StaticResource FontAwesome5ProLight}" FontSize="{StaticResource FontSizeSmall}" />
                     </MenuItem.Icon>
                 </MenuItem>
                 <Separator />
                 <MenuItem Header="التقارير" >
                     <MenuItem.Icon>
-                        <TextBlock Text="&#xf659;" FontFamily="{StaticResource FontAwesome5ProLight}" />
+                        <TextBlock Text="&#xf659;" FontFamily="{StaticResource FontAwesome5ProLight}" FontSize="{StaticResource FontSizeSmall}" />
                     </MenuItem.Icon>
                     <MenuItem Command="{Binding ReportApplicantCommand}" Header="طالب الإعانة"  >
                         <MenuItem.Icon>
-                            <TextBlock Text="&#xf2bb;" FontFamily="{StaticResource FontAwesome5ProLight}" />
+                            <TextBlock Text="&#xf2bb;" FontFamily="{StaticResource FontAwesome5ProLight}" FontSize="{StaticResource FontSizeSmall}" />
                         </MenuItem.Icon>
                     </MenuItem>
                     <MenuItem Command="{Binding ReportAssistanceCommand}" Header="الإعانات الشهرية"  >
                         <MenuItem.Icon>
-                            <TextBlock Text="&#xf65a;" FontFamily="{StaticResource FontAwesome5ProLight}" />
+                            <TextBlock Text="&#xf65a;" FontFamily="{StaticResource FontAwesome5ProLight}" FontSize="{StaticResource FontSizeSmall}" />
                         </MenuItem.Icon>
                     </MenuItem>
                 </MenuItem>
@@ -119,12 +119,12 @@
             <MenuItem Header="_المحاضر" Visibility="{Binding Scribe}" HorizontalAlignment="Left" >
                 <MenuItem Command="{Binding PageOpenRecordPoorCommand}" Header="_فتح محضر لمحتاج" >
                     <MenuItem.Icon>
-                        <TextBlock Text="&#xf2b9;" FontFamily="{StaticResource FontAwesome5ProLight}" />
+                        <TextBlock Text="&#xf2b9;" FontFamily="{StaticResource FontAwesome5ProLight}" FontSize="{StaticResource FontSizeSmall}" />
                     </MenuItem.Icon>
                 </MenuItem>
                 <MenuItem Command="{Binding PageViewRecordDataCommand}" Header="_إدارة المحاضر" >
                     <MenuItem.Icon>
-                        <TextBlock Text="&#xf64b;" FontFamily="{StaticResource FontAwesome5ProLight}" />
+                        <TextBlock Text="&#xf64b;" FontFamily="{StaticResource FontAwesome5ProLight}" FontSize="{StaticResource FontSizeSmall}" />
                     </MenuItem.Icon>
                 </MenuItem>
                 <!--<Separator />
@@ -137,22 +137,22 @@
             <MenuItem Header="_المتابعات" Visibility="{Binding Scribe}" HorizontalAlignment="Left" >
                 <MenuItem Command="{Binding PageDeliverRecordCommand}" Header="تحويل المحتاج إلى المتابعة" >
                     <MenuItem.Icon>
-                        <TextBlock Text="&#xf067;" FontFamily="{StaticResource FontAwesome5ProLight}" />
+                        <TextBlock Text="&#xf067;" FontFamily="{StaticResource FontAwesome5ProLight}" FontSize="{StaticResource FontSizeSmall}" />
                     </MenuItem.Icon>
                 </MenuItem>
                 <MenuItem Command="{Binding PageViewFollowUpDataCommand}" Header="إدارة المتابعات" >
                     <MenuItem.Icon>
-                        <TextBlock Text="&#xf0ae;" FontFamily="{StaticResource FontAwesome5ProLight}" />
+                        <TextBlock Text="&#xf0ae;" FontFamily="{StaticResource FontAwesome5ProLight}" FontSize="{StaticResource FontSizeSmall}" />
                     </MenuItem.Icon>
                 </MenuItem>
                 <Separator />
                 <MenuItem Header="التقارير" >
                     <MenuItem.Icon>
-                        <TextBlock Text="&#xf65a;" FontFamily="{StaticResource FontAwesome5ProLight}" />
+                        <TextBlock Text="&#xf65a;" FontFamily="{StaticResource FontAwesome5ProLight}" FontSize="{StaticResource FontSizeSmall}" />
                     </MenuItem.Icon>
                     <MenuItem Command="{Binding ReportSocialResearchCommand}" Header="عدد الملفات البحاث" >
                         <MenuItem.Icon>
-                            <TextBlock Text="&#xf65b;" FontFamily="{StaticResource FontAwesome5ProLight}" />
+                            <TextBlock Text="&#xf65b;" FontFamily="{StaticResource FontAwesome5ProLight}" FontSize="{StaticResource FontSizeSmall}" />
                         </MenuItem.Icon>
                     </MenuItem>
                 </MenuItem>
@@ -160,38 +160,38 @@
             <MenuItem Header="_الزكاة" Visibility="{Binding Collector}" HorizontalAlignment="Left" >
                 <MenuItem Command="{Binding PageAddNewZakatCommand}" Header="_إضافة زكاة جديدة" >
                     <MenuItem.Icon>
-                        <TextBlock Text="&#xf53d;" FontFamily="{StaticResource FontAwesome5ProLight}" />
+                        <TextBlock Text="&#xf53d;" FontFamily="{StaticResource FontAwesome5ProLight}" FontSize="{StaticResource FontSizeSmall}" />
                     </MenuItem.Icon>
                 </MenuItem>
                 <MenuItem Command="{Binding PageViewZakatDataCommand}" Header="_إدارة الزكاة" >
                     <MenuItem.Icon>
-                        <TextBlock Text="&#xf723;" FontFamily="{StaticResource FontAwesome5ProLight}" />
+                        <TextBlock Text="&#xf723;" FontFamily="{StaticResource FontAwesome5ProLight}" FontSize="{StaticResource FontSizeSmall}" />
                     </MenuItem.Icon>
                 </MenuItem>
                 <Separator />
                 <MenuItem Command="{Binding PageTransferZakatDataCommand}" Header="_تحويل الزكاة الى المصارف" >
                     <MenuItem.Icon>
-                        <TextBlock Text="&#xf66f;" FontFamily="{StaticResource FontAwesome5ProLight}" />
+                        <TextBlock Text="&#xf66f;" FontFamily="{StaticResource FontAwesome5ProLight}" FontSize="{StaticResource FontSizeSmall}" />
                     </MenuItem.Icon>
                 </MenuItem>
                 <Separator />
                 <MenuItem Header="التقارير" >
                     <MenuItem.Icon>
-                        <TextBlock Text="&#xf65a;" FontFamily="{StaticResource FontAwesome5ProLight}" />
+                        <TextBlock Text="&#xf65a;" FontFamily="{StaticResource FontAwesome5ProLight}" FontSize="{StaticResource FontSizeSmall}" />
                     </MenuItem.Icon>
                     <MenuItem Command="{Binding ReportNumberZakatCommand}" Header="عدد المزكين" >
                         <MenuItem.Icon>
-                            <TextBlock Text="&#xf65b;" FontFamily="{StaticResource FontAwesome5ProLight}" />
+                            <TextBlock Text="&#xf65b;" FontFamily="{StaticResource FontAwesome5ProLight}" FontSize="{StaticResource FontSizeSmall}" />
                         </MenuItem.Icon>
                     </MenuItem>
                     <MenuItem Command="{Binding ReportCollectZakatCommand}" Header="جباية الزكاة" >
                         <MenuItem.Icon>
-                            <TextBlock Text="&#xf571;" FontFamily="{StaticResource FontAwesome5ProLight}" />
+                            <TextBlock Text="&#xf571;" FontFamily="{StaticResource FontAwesome5ProLight}" FontSize="{StaticResource FontSizeSmall}" />
                         </MenuItem.Icon>
                     </MenuItem>
                     <MenuItem Command="{Binding ReportZakatCommand}" Header="الزكاة" >
                         <MenuItem.Icon>
-                            <TextBlock Text="&#xf659;" FontFamily="{StaticResource FontAwesome5ProLight}" />
+                            <TextBlock Text="&#xf659;" FontFamily="{StaticResource FontAwesome5ProLight}" FontSize="{StaticResource FontSizeSmall}" />
                         </MenuItem.Icon>
                     </MenuItem>
                 </MenuItem>
@@ -199,22 +199,22 @@
             <MenuItem Header="_المصروفات" Visibility="{Binding Courier}" HorizontalAlignment="Left" >
                 <MenuItem Command="{Binding PageCreateExchangePermissionCommand}" Header="_إذن صرف جديد">
                     <MenuItem.Icon>
-                        <TextBlock Text="&#xf53c;" FontFamily="{StaticResource FontAwesome5ProLight}" />
+                        <TextBlock Text="&#xf53c;" FontFamily="{StaticResource FontAwesome5ProLight}" FontSize="{StaticResource FontSizeSmall}" />
                     </MenuItem.Icon>
                 </MenuItem>
                 <MenuItem Command="{Binding PageViewExchangePermissionDataCommand}" Header="_إدارة المصروفات" >
                     <MenuItem.Icon>
-                        <TextBlock Text="&#xf723;" FontFamily="{StaticResource FontAwesome5ProLight}" />
+                        <TextBlock Text="&#xf723;" FontFamily="{StaticResource FontAwesome5ProLight}" FontSize="{StaticResource FontSizeSmall}" />
                     </MenuItem.Icon>
                 </MenuItem>
                 <Separator />
                 <MenuItem Header="التقارير" >
                     <MenuItem.Icon>
-                        <TextBlock Text="&#xf65a;" FontFamily="{StaticResource FontAwesome5ProLight}" />
+                        <TextBlock Text="&#xf65a;" FontFamily="{StaticResource FontAwesome5ProLight}" FontSize="{StaticResource FontSizeSmall}" />
                     </MenuItem.Icon>
                     <MenuItem Command="{Binding ReportExpensesCommand}" Header="المصروفات" >
                         <MenuItem.Icon>
-                            <TextBlock Text="&#xf571;" FontFamily="{StaticResource FontAwesome5ProLight}" />
+                            <TextBlock Text="&#xf571;" FontFamily="{StaticResource FontAwesome5ProLight}" FontSize="{StaticResource FontSizeSmall}" />
                         </MenuItem.Icon>
                     </MenuItem>
                 </MenuItem>
@@ -222,31 +222,31 @@
             <MenuItem Header="_المتابعات" Visibility="{Binding Observer}" HorizontalAlignment="Left" >
                 <MenuItem Command="{Binding PageViewFollowUpDataObserverCommand}" Header="_متابعاتي" >
                     <MenuItem.Icon>
-                        <TextBlock Text="&#xf0ae;" FontFamily="{StaticResource FontAwesome5ProLight}" />
+                        <TextBlock Text="&#xf0ae;" FontFamily="{StaticResource FontAwesome5ProLight}" FontSize="{StaticResource FontSizeSmall}" />
                     </MenuItem.Icon>
                 </MenuItem>
                 <!--<Separator />
                 <MenuItem Header="المراجعات">
                     <MenuItem.Icon>
-                        <TextBlock Text="&#x;" FontFamily="{StaticResource FontAwesome5ProLight}" />
+                        <TextBlock Text="&#x;" FontFamily="{StaticResource FontAwesome5ProLight}" FontSize="{StaticResource FontSizeSmall}" />
                     </MenuItem.Icon>
                 </MenuItem>-->
             </MenuItem>
             <MenuItem Header="المساعدة" HorizontalAlignment="Left">
                 <MenuItem Header="_مساعدة" >
                     <MenuItem.Icon>
-                        <TextBlock Text="&#xf059;" FontFamily="{StaticResource FontAwesome5ProLight}" />
+                        <TextBlock Text="&#xf059;" FontFamily="{StaticResource FontAwesome5ProLight}" FontSize="{StaticResource FontSizeSmall}" />
                     </MenuItem.Icon>
                 </MenuItem>
                 <MenuItem Header="_الصفحة الرئيسية" >
                     <MenuItem.Icon>
-                        <TextBlock Text="&#xf282;" FontFamily="{StaticResource FontAwesome5BrandsRegular}" />
+                        <TextBlock Text="&#xf282;" FontFamily="{StaticResource FontAwesome5BrandsRegular}" FontSize="{StaticResource FontSizeSmall}" />
                     </MenuItem.Icon>
                 </MenuItem>
                 <Separator />
-                <MenuItem Header="_حول نظام صندوق الزكاة" >
+                <MenuItem Command="{Binding AboutCommand}" Header="_حول البرنامج" >
                     <MenuItem.Icon>
-                        <TextBlock Text="&#xf05a;" FontFamily="{StaticResource FontAwesome5ProLight}" />
+                        <TextBlock Text="&#xf05a;" FontFamily="{StaticResource FontAwesome5ProLight}" FontSize="{StaticResource FontSizeSmall}" />
                     </MenuItem.Icon>
                 </MenuItem>
             </MenuItem>

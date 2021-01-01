@@ -44,14 +44,14 @@
                         </StackPanel>
                         <TextBlock Text=" نوع المساعدة : * "  Style="{StaticResource filedText}" Grid.Column="0"  Grid.Row="2"/>
                         <StackPanel Margin="0 5" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3" >
-                            <ComboBox Text="{Binding TypeAssistance,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Style="{StaticResource ComboBox3}" IsEditable="True" >
-                                <ComboBoxItem>شهرية</ComboBoxItem>
-                                <ComboBoxItem>علاج</ComboBoxItem>
-                                <ComboBoxItem>زواج</ComboBoxItem>
-                                <ComboBoxItem>بناء</ComboBoxItem>
-                                <ComboBoxItem>سداد ديون</ComboBoxItem>
+                            <ComboBox Text="{Binding TypeAssistance, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource ComboBox3}" IsEditable="True" >
+                                <ComboBoxItem Content="شهرية"/>
+                                <ComboBoxItem Content="علاج"/>
+                                <ComboBoxItem Content="زواج"/>
+                                <ComboBoxItem Content="بناء"/>
+                                <ComboBoxItem Content="سداد ديون"/>
                             </ComboBox>
-                             <TextBlock Text="انواع المساعدة مثل ( علاج ،ايجار ،زواج سداد دين ،اخرى)" Style="{StaticResource smallText}"/>
+                            <TextBlock Text="انواع المساعدة مثل ( علاج ،ايجار ،زواج سداد دين ،اخرى)" Style="{StaticResource smallText}"/>
                         </StackPanel>
                         <TextBlock Text="قيمة الصرف : * " Style="{StaticResource filedText}" Grid.Column="0"  Grid.Row="3"/>
                         <StackPanel Margin="0 5" Grid.Column="1" Grid.Row="3" >
@@ -65,14 +65,14 @@
                         </StackPanel>
                         <StackPanel  VerticalAlignment="Center" Grid.Column="3" Grid.Row="3"  >
                             <ComboBox SelectedIndex="{Binding CategoryPoor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource ComboBox1}" >
-                                <ComboBoxItem>الفقراء والمسكين</ComboBoxItem>
-                                <ComboBoxItem>المؤلفة قلوبهم</ComboBoxItem>
-                                <ComboBoxItem>في الرقاب</ComboBoxItem>
-                                <ComboBoxItem>الغارمين</ComboBoxItem>
-                                <ComboBoxItem>في سبيل الله</ComboBoxItem>
-                                <ComboBoxItem>ابن السبيل</ComboBoxItem>
-                                <ComboBoxItem>المكتب</ComboBoxItem>
-                                <ComboBoxItem>الجباة</ComboBoxItem>
+                                <ComboBoxItem Content="الفقراء والمسكين"/>
+                                <ComboBoxItem Content="المؤلفة قلوبهم"/>
+                                <ComboBoxItem Content="في الرقاب"/>
+                                <ComboBoxItem Content="الغارمين"/>
+                                <ComboBoxItem Content="في سبيل الله"/>
+                                <ComboBoxItem Content="ابن السبيل"/>
+                                <ComboBoxItem Content="المكتب"/>
+                                <ComboBoxItem Content="الجباة"/>
                             </ComboBox>
                         </StackPanel>
                         <TextBlock Text="رقم الصك : " Style="{StaticResource filedText}" Grid.Column="0"  Grid.Row="4"/>
@@ -87,18 +87,18 @@
 
                         <TextBlock Text="ملاحظة : " Style="{StaticResource filedText}" Grid.Column="0" Grid.Row="5"/>
                         <StackPanel Margin="0 5" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="5"  >
-                            <TextBox Text="{Binding Comment,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Style="{StaticResource Textarea}" />
+                            <TextBox Text="{Binding Comment, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource Textarea}" />
                             <TextBlock Text="ملاحظة على حالة الصرف" Style="{StaticResource smallText}" />
                         </StackPanel>
-                        <Button Command="{Binding updateDatabaseCommand}"  Style="{StaticResource viewButtonStyle}" Grid.Column="1" Grid.Row="6"  >
+                        <Button Command="{Binding updateDatabaseCommand}"  Style="{StaticResource viewButtonStyle}" Grid.Column="1" Grid.Row="6" >
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="&#xf0c7;" Margin="0 0 0 0" FontSize="24" FontFamily="{StaticResource FontAwesome5ProLight}" />
+                                <TextBlock Text="&#xF0C7;" Margin="0 0 0 0" FontSize="24" FontFamily="{StaticResource FontAwesome5ProLight}" />
                                 <TextBlock Text="تحديث" Margin="7 1 0 0" />
                             </StackPanel>
                         </Button>
                         <Button Command="{Binding CancelCommand}" Style="{StaticResource viewButtonStyle}" Grid.Column="2" Grid.Row="6"  >
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="&#xf057;" Margin="0 0 0 0" FontSize="24" FontFamily="{StaticResource FontAwesome5ProLight}" />
+                                <TextBlock Text="&#xF057;" Margin="0 0 0 0" FontSize="24" FontFamily="{StaticResource FontAwesome5ProLight}" />
                                 <TextBlock Text="الغاء" Margin="7 1 0 0" />
                             </StackPanel>
                         </Button>

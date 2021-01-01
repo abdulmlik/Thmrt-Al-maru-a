@@ -62,7 +62,7 @@ namespace AL_Zakat_Fund_System.ViewModels
 
             try
             {
-                list.Clear();
+                List.Clear();
 
                 DBConnection.OpenConnection();
 
@@ -70,20 +70,22 @@ namespace AL_Zakat_Fund_System.ViewModels
 
                 while (DBConnection.reader.Read())
                 {
-                    TR = new Follow_up();
-                    TR.DecisionNO = DBConnection.reader.GetInt64(0).ToString();
-                    TR.fullname = DBConnection.reader.GetString(1);
-                    TR.Phone = DBConnection.reader.GetString(2);
-                    TR.Office = DBConnection.reader.GetString(3);
-                    TR.LastConnection2 = DBConnection.reader.GetString(4);
-                    TR.Notice = DBConnection.reader.GetString(5);
-                    TR.Comment = DBConnection.reader.GetString(6);
+                    TR = new Follow_up
+                    {
+                        DecisionNO = DBConnection.reader.GetInt64(0).ToString(),
+                        fullname = DBConnection.reader.GetString(1),
+                        Phone = DBConnection.reader.GetString(2),
+                        Office = DBConnection.reader.GetString(3),
+                        LastConnection2 = DBConnection.reader.GetString(4),
+                        Notice = DBConnection.reader.GetString(5),
+                        Comment = DBConnection.reader.GetString(6)
+                    };
 
 
-                    list.Add(TR);
+                    List.Add(TR);
                 }
                 _list2.Clear();
-                _list2.AddRange(list.ToList<Follow_up>());
+                _list2.AddRange(List.ToList<Follow_up>());
             }
             catch (Exception ex)
             {
@@ -101,7 +103,7 @@ namespace AL_Zakat_Fund_System.ViewModels
 
         #region public properties
 
-        public ObservableCollection<Follow_up> list
+        public ObservableCollection<Follow_up> List
         {
             get { return _list; }
             set { SetProperty(ref _list, value); }
@@ -124,7 +126,7 @@ namespace AL_Zakat_Fund_System.ViewModels
                 {
                     SelectItem = null;
                     Regex regEx = new Regex(_SearchText.ToString(), RegexOptions.IgnoreCase);
-                    list = new ObservableCollection<Follow_up>(_list2.Where(item => regEx.IsMatch(item.DecisionNO) || regEx.IsMatch(item.fullname) ||
+                    List = new ObservableCollection<Follow_up>(_list2.Where(item => regEx.IsMatch(item.DecisionNO) || regEx.IsMatch(item.fullname) ||
                                                                 regEx.IsMatch(item.Comment) || regEx.IsMatch(item.Notice) || regEx.IsMatch(item.Office) || regEx.IsMatch(item.Phone) ||
                                                             regEx.IsMatch(item.LastConnection2) ).ToList<Follow_up>());
 
@@ -132,8 +134,8 @@ namespace AL_Zakat_Fund_System.ViewModels
                 else
                 {
                     SelectItem = null;
-                    list.Clear();
-                    list.AddRange(_list2.ToList<Follow_up>());
+                    List.Clear();
+                    List.AddRange(_list2.ToList<Follow_up>());
                 }
             }
         }

@@ -323,6 +323,9 @@
     <Compile Include="Views\EditFollowUpObserver.xaml.cs">
       <DependentUpon>EditFollowUpObserver.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\AboutWindow.xaml.cs">
+      <DependentUpon>AboutWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\EditRecord.xaml.cs">
       <DependentUpon>EditRecord.xaml</DependentUpon>
     </Compile>
@@ -478,6 +481,10 @@
     <Page Include="Views\EditFollowUpObserver.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AboutWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\EditRecord.xaml">
       <SubType>Designer</SubType>

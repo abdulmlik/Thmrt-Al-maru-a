@@ -17,6 +17,33 @@
             </ResourceDictionary.MergedDictionaries>
 
             <m:NullableDateTimeToBooleanConverter x:Key="DateTimeToBoolConverter" />
+            <XmlDataProvider x:Key="aboutProvider" XPath="ApplicationInfo">
+
+                <x:XData>
+
+                    <ApplicationInfo xmlns="">
+
+                        <Title>حول ثمرة المروءة</Title>
+
+                        <Product>ثمرة المروءة لإدارة الزكاة</Product>
+
+                        <Company>قط الرمال للبرمجيات</Company>
+
+                        <Copyright>حقوق الطبع والنشر © 2018-2019 - قط الرمال للبرمجيات</Copyright>
+
+                        <Description>
+
+                        </Description>
+
+                        <Version>1.0.0.0</Version>
+
+                        <Link Uri="https://github.com/abdulmlik/Thmrt-Al-maru-a.git">مزيد من المعلومات</Link>
+
+                    </ApplicationInfo>
+
+                </x:XData>
+
+            </XmlDataProvider>
         </ResourceDictionary>
 
 

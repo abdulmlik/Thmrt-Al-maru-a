@@ -24,7 +24,9 @@ namespace AL_Zakat_Fund_System.ViewModels
         private DateTime? _EndDate;
 
         private CrystalDecisions.CrystalReports.Engine.ReportDocument _MyReportSource;
-        
+
+        private Window _Owner;
+
         #endregion
 
         #region private Function
@@ -48,6 +50,12 @@ namespace AL_Zakat_Fund_System.ViewModels
             get { return _MyReportSource; }
             set { SetProperty(ref _MyReportSource, value); }
         }
+        public Window Owner
+        {
+            get { return _Owner; }
+            set { SetProperty(ref _Owner, value); }
+        }
+        
 
 
         #endregion
@@ -188,6 +196,7 @@ namespace AL_Zakat_Fund_System.ViewModels
             string PeriodReport = "خلال الفترة من " + StartDate.Value.ToString("yyyy-MM") + "   إلى " + EndDate.Value.ToString("yyyy-MM");
             // Parameter for crystal report
             string nameOffice = Properties.Settings.Default.nameOffice;
+            Owner = Window.GetWindow(CurrentWindow);
 
             CrystalZakat cr = new CrystalZakat();
             cr.Database.Tables["Zakat"].SetDataSource(DTZakat);

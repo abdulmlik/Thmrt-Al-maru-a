@@ -60,7 +60,7 @@ namespace AL_Zakat_Fund_System.ViewModels
 
             try
             {
-                list.Clear();
+                List.Clear();
 
                 DBConnection.OpenConnection();
 
@@ -81,10 +81,10 @@ namespace AL_Zakat_Fund_System.ViewModels
                     TR.Courier_ssn2 = DBConnection.reader.GetString(9);
 
 
-                    list.Add(TR);
+                    List.Add(TR);
                 }
                 _list2.Clear();
-                _list2.AddRange(list.ToList<AuthorizeExpenditure>());
+                _list2.AddRange(List.ToList<AuthorizeExpenditure>());
             }
             catch (Exception ex)
             {
@@ -102,7 +102,7 @@ namespace AL_Zakat_Fund_System.ViewModels
 
         #region public properties
 
-        public ObservableCollection<AuthorizeExpenditure> list
+        public ObservableCollection<AuthorizeExpenditure> List
         {
             get { return _list; }
             set { SetProperty(ref _list, value); }
@@ -125,7 +125,7 @@ namespace AL_Zakat_Fund_System.ViewModels
                 {
                     SelectItem = null;
                     Regex regEx = new Regex(_SearchText.ToString(), RegexOptions.IgnoreCase);
-                    list = new ObservableCollection<AuthorizeExpenditure>(_list2.Where(item => regEx.IsMatch(item.CommitteeDecisionNO) || regEx.IsMatch(item.FullName) || regEx.IsMatch(item.SDate.ToString("dd/MM/yyyy")) ||
+                    List = new ObservableCollection<AuthorizeExpenditure>(_list2.Where(item => regEx.IsMatch(item.CommitteeDecisionNO) || regEx.IsMatch(item.FullName) || regEx.IsMatch(item.SDate.ToString("dd/MM/yyyy")) ||
                                                             regEx.IsMatch(item.CategoryPoor2) || regEx.IsMatch(item.TypeAssistance) || regEx.IsMatch(item.Amount) || regEx.IsMatch(item.InstrumentNO2) ||
                                                             regEx.IsMatch(item.InstrumentNO) || regEx.IsMatch(item.Courier_ssn2)).ToList<AuthorizeExpenditure>());
 
@@ -133,8 +133,8 @@ namespace AL_Zakat_Fund_System.ViewModels
                 else
                 {
                     SelectItem = null;
-                    list.Clear();
-                    list.AddRange(_list2.ToList<AuthorizeExpenditure>());
+                    List.Clear();
+                    List.AddRange(_list2.ToList<AuthorizeExpenditure>());
                 }
             }
         }

@@ -24,7 +24,7 @@ namespace AL_Zakat_Fund_System.ViewModels
 
         private string _EmpName;
 
-        private Window mWindow;
+        private readonly Window mWindow;
         private object _Page;
 
         private Cursor _Cursor;
@@ -299,6 +299,7 @@ namespace AL_Zakat_Fund_System.ViewModels
         public DelegateCommand CloseCommand { get; set; }
         public DelegateCommand DatabaseBackupCommand { get; set; }
         public DelegateCommand DatabaseRestoreCommand { get; set; }
+        public DelegateCommand AboutCommand { get; set; }
         #endregion
 
         #region view page Command
@@ -404,11 +405,13 @@ namespace AL_Zakat_Fund_System.ViewModels
         #region Database Backup
         private void DatabaseBackupExecute()
         {
-            SaveFileDialog FilePath = new SaveFileDialog();
-            FilePath.InitialDirectory = @"D:\";
-            FilePath.FileName = "ZakatDB_" + DateTime.Now.ToShortDateString().Replace('/', '-') + "_"
-                                 + DateTime.Now.ToLongTimeString().Replace(':', '-').Replace("PM", "").Replace("AM", "").Trim();
-            FilePath.Filter = "Text Files (*.bak)|*.bak|All Files|*.*";
+            SaveFileDialog FilePath = new SaveFileDialog
+            {
+                InitialDirectory = @"D:\",
+                FileName = "ZakatDB_" + DateTime.Now.ToShortDateString().Replace('/', '-') + "_"
+                                 + DateTime.Now.ToLongTimeString().Replace(':', '-').Replace("PM", "").Replace("AM", "").Trim(),
+                Filter = "Text Files (*.bak)|*.bak|All Files|*.*"
+            };
 
             bool? result = FilePath.ShowDialog();
             if (result == true)
@@ -416,9 +419,9 @@ namespace AL_Zakat_Fund_System.ViewModels
                 Cursor saveCursor = Cursor;
                 //Cursor = Cursors.Wait;
                 Mouse.OverrideCursor = Cursors.Wait;
-                int succ = 0;
                 try
                 {
+                    int succ = 0;
                     DBConnection.OpenConnection();
 
                     DBConnection.cmd.CommandType = CommandType.StoredProcedure;
@@ -467,9 +470,11 @@ namespace AL_Zakat_Fund_System.ViewModels
         #region Database Restore
         private void DatabaseRestoreExecute()
         {
-            OpenFileDialog FilePath = new OpenFileDialog();
-            FilePath.InitialDirectory = @"D:\";
-            FilePath.Filter = "Text Files (*.bak)|*.bak|All Files|*.*";
+            OpenFileDialog FilePath = new OpenFileDialog
+            {
+                InitialDirectory = @"D:\",
+                Filter = "Text Files (*.bak)|*.bak|All Files|*.*"
+            };
 
             MessageBoxResult result1 = MessageBox.Show("لإسترجاع النسخة الإحتياطية الرجاء التأكد من إغلاق جميع الإتصالات بالسيرفر", "", MessageBoxButton.YesNo, MessageBoxImage.Question
                                                             , MessageBoxResult.No, MessageBoxOptions.RightAlign | MessageBoxOptions.RtlReading);
@@ -482,9 +487,10 @@ namespace AL_Zakat_Fund_System.ViewModels
                     //Cursor = Cursors.Wait;
                     Mouse.OverrideCursor = Cursors.Wait;
 
-                    int succ = 0;
+                    
                     try
                     {
+                        int succ = 0;
                         DBConnection.OpenConnection();
 
                         DBConnection.cmd.CommandType = CommandType.StoredProcedure;
@@ -527,6 +533,24 @@ namespace AL_Zakat_Fund_System.ViewModels
         private bool DatabaseRestoreCanExecute()
         {
             return DBConnection.ConnectionStatus() && Properties.Settings.Default.EmpPriv == 10;
+        }
+        #endregion
+
+        #region about
+        private void AboutExecute()
+        {
+            Cursor saveCursor = Cursor;
+            Cursor = Cursors.Wait;
+
+            AboutWindow PageRZ = new AboutWindow
+            {
+                Owner = mWindow
+            };
+            bool? result = PageRZ.ShowDialog();
+            if (result == true)
+            { }
+
+            Cursor = saveCursor;
         }
         #endregion
 
@@ -864,6 +888,7 @@ namespace AL_Zakat_Fund_System.ViewModels
             CloseCommand = new DelegateCommand(CloseExecute);
             DatabaseBackupCommand = new DelegateCommand(DatabaseBackupExecute,DatabaseBackupCanExecute);
             DatabaseRestoreCommand = new DelegateCommand(DatabaseRestoreExecute, DatabaseRestoreCanExecute);
+            AboutCommand = new DelegateCommand(AboutExecute);
 
             ReportZakatCommand = new DelegateCommand(ReportZakatExecute);
             ReportCollectZakatCommand = new DelegateCommand(ReportCollectZakatExecute);

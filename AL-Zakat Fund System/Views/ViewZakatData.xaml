@@ -54,7 +54,7 @@
                     <TextBlock Text="عرض" Margin="5 0 0 0" />
                 </StackPanel>
             </Button>
-            <Button Command="{Binding DeleteZakatCommand}" Style="{StaticResource viewButtonStyleSearch}">
+            <Button Command="{Binding DeleteZakatCommand}" Style="{StaticResource viewButtonStyleSearch}" >
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="&#xf2ed;" Margin="0 1 0 0" FontSize="22" FontFamily="{StaticResource FontAwesome5ProLight}" />
                     <TextBlock Text="حذف" Margin="5 0 0 0" />

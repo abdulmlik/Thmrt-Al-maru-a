@@ -54,13 +54,13 @@
                     <TextBlock Text="عرض" Margin="7 0 0 0" />
                 </StackPanel>
             </Button>
-            <Button Command="{Binding TransferZakatCommand}" Style="{StaticResource viewButtonStyleSearch}" >
+            <Button Command="{Binding TransferZakatCommand}" Style="{StaticResource viewButtonStyleSearch}">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="&#xf66f;" Margin="0 3 0 0" FontSize="18" FontFamily="{StaticResource FontAwesome5ProLight}" />
                     <TextBlock Text="تحويل" Margin="5 0 0 0" />
                 </StackPanel>
             </Button>
-            <Button Command="{Binding TransferAllZakatCommand}" Content="تحويل الكل" Style="{StaticResource viewButtonStyleSearch}"/>
+            <Button Command="{Binding TransferAllZakatCommand}" Content="تحويل الكل" Style="{StaticResource viewButtonStyleSearch}"  />
         </StackPanel>
         <ListView ItemsSource="{Binding list}" FontSize="18" Foreground="Black" 
                   IsSynchronizedWithCurrentItem="True"  SelectedItem="{Binding SelectItem}"
