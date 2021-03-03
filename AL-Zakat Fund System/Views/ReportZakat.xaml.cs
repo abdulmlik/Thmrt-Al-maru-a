@@ -24,6 +24,7 @@ namespace AL_Zakat_Fund_System.Views
         public ReportZakat()
         {
             InitializeComponent();
+            // ReportView.Owner = Window.GetWindow(this);
         }
     }
 }
