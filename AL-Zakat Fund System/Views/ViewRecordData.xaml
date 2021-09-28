@@ -42,7 +42,7 @@
                     <TextBlock Text="تحديث" Margin="10 0 0 0" />
                 </StackPanel>
             </Button>
-            <Button Command="{Binding EditRecordCommand}" Style="{StaticResource viewButtonStyleSearch}" >
+            <Button Visibility="{Binding MainWindowVM.PageEditRecordPoor}" Command="{Binding EditRecordCommand}" Style="{StaticResource viewButtonStyleSearch}" >
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="&#xf044;" Margin="0 3 0 0" FontSize="18" FontFamily="{StaticResource FontAwesome5ProLight}" />
                     <TextBlock Text="تعديل" Margin="7 0 0 0" />
@@ -54,7 +54,7 @@
                     <TextBlock Text="عرض" Margin="5 0 0 0" />
                 </StackPanel>
             </Button>
-            <Button Command="{Binding DeleteRecordCommand}" Style="{StaticResource viewButtonStyleSearch}">
+            <Button Visibility="{Binding MainWindowVM.PageDeleteRecordPoor}" Command="{Binding DeleteRecordCommand}" Style="{StaticResource viewButtonStyleSearch}">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="&#xf2ed;" Margin="0 1 0 0" FontSize="22" FontFamily="{StaticResource FontAwesome5ProLight}" />
                     <TextBlock Text="حذف" Margin="5 0 0 0" />

@@ -14,7 +14,7 @@ namespace AL_Zakat_Fund_System.ViewModels
     class DisplayAuthorizeExpenditureViewModel : AuthorizeExpenditure
     {
         #region private Member
-        private Window CurrentWindow;
+        private readonly Window CurrentWindow;
 
         #endregion
 

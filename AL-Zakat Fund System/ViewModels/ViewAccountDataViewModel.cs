@@ -19,8 +19,8 @@ namespace AL_Zakat_Fund_System.ViewModels
     class ViewAccountDataViewModel : Indigent
     {
         #region private Member
-        private UserControl CurrentPage;
-        private Window mWindow;
+        private readonly UserControl CurrentPage;
+        private MainWindowViewModel _mainWindowVM;
         private ObservableCollection<Indigent> _list = new ObservableCollection<Indigent>();
         private ObservableCollection<Indigent> _list2 = new ObservableCollection<Indigent>();
         private string _SearchText;
@@ -60,7 +60,7 @@ namespace AL_Zakat_Fund_System.ViewModels
 
             try
             {
-                list.Clear();
+                List.Clear();
 
                 DBConnection.OpenConnection();
 
@@ -68,32 +68,34 @@ namespace AL_Zakat_Fund_System.ViewModels
 
                 while (DBConnection.reader.Read())
                 {
-                    TI = new Indigent();
-                    TI.Ssn = DBConnection.reader.GetInt64(0).ToString();
-                    TI.SDate = DBConnection.reader.GetDateTime(1);
-                    TI.RequestStatus2 = DBConnection.reader.GetString(2);
-                    TI.FName = DBConnection.reader.GetString(3);
-                    TI.MName = DBConnection.reader.GetString(4);
-                    TI.GName = DBConnection.reader.GetString(5);
-                    TI.LName = DBConnection.reader.GetString(6);
-                    TI.MotherName = DBConnection.reader.GetString(7);
-                    TI.DialCode = DBConnection.reader.GetString(8);
-                    TI.Number = DBConnection.reader.GetString(9);
-                    TI.TypeAssistance = DBConnection.reader.GetString(10);
-                    TI.SocialStatus2 = DBConnection.reader.GetString(11);
-                    TI.Nationality = DBConnection.reader.GetString(12);
-                    TI.PersonalCardNO = DBConnection.reader.GetString(13);
-                    TI.PassportNO = DBConnection.reader.GetString(14);
-                    TI.Email = DBConnection.reader.GetString(15);
-                    TI.Gender2 = DBConnection.reader.GetString(16);
-                    TI.Scribe_ssn2 = DBConnection.reader.GetString(17);
-                    TI.Office_no2 = DBConnection.reader.GetString(18);
-                    TI.IND_ID = DBConnection.reader.GetInt32(19);
+                    TI = new Indigent
+                    {
+                        Ssn = DBConnection.reader.GetInt64(0).ToString(),
+                        SDate = DBConnection.reader.GetDateTime(1),
+                        RequestStatus2 = DBConnection.reader.GetString(2),
+                        FName = DBConnection.reader.GetString(3),
+                        MName = DBConnection.reader.GetString(4),
+                        GName = DBConnection.reader.GetString(5),
+                        LName = DBConnection.reader.GetString(6),
+                        MotherName = DBConnection.reader.GetString(7),
+                        DialCode = DBConnection.reader.GetString(8),
+                        Number = DBConnection.reader.GetString(9),
+                        TypeAssistance = DBConnection.reader.GetString(10),
+                        SocialStatus2 = DBConnection.reader.GetString(11),
+                        Nationality = DBConnection.reader.GetString(12),
+                        PersonalCardNO = DBConnection.reader.GetString(13),
+                        PassportNO = DBConnection.reader.GetString(14),
+                        Email = DBConnection.reader.GetString(15),
+                        Gender2 = DBConnection.reader.GetString(16),
+                        Scribe_ssn2 = DBConnection.reader.GetString(17),
+                        Office_no2 = DBConnection.reader.GetString(18),
+                        IND_ID = DBConnection.reader.GetInt32(19)
+                    };
 
-                    list.Add(TI);
+                    List.Add(TI);
                 }
                 _list2.Clear();
-                _list2.AddRange(list.ToList<Indigent>());
+                _list2.AddRange(List.ToList<Indigent>());
             }
             catch (Exception ex)
             {
@@ -110,11 +112,21 @@ namespace AL_Zakat_Fund_System.ViewModels
         #endregion
 
         #region public properties
-
-        public ObservableCollection<Indigent> list
+        
+        public MainWindowViewModel MainWindowVM
+        {
+            get { return _mainWindowVM; }
+            set { SetProperty(ref _mainWindowVM, value); }
+        }
+        public ObservableCollection<Indigent> List
         {
             get { return _list; }
             set { SetProperty(ref _list, value); }
+        }
+        public ObservableCollection<Indigent> List2
+        {
+            get { return _list2; }
+            set { SetProperty(ref _list2, value); }
         }
         public string SearchText
         {
@@ -134,7 +146,7 @@ namespace AL_Zakat_Fund_System.ViewModels
                 {
                     SelectItem = null;
                     Regex regEx = new Regex(_SearchText.ToString(), RegexOptions.IgnoreCase);
-                    list = new ObservableCollection<Indigent>(_list2.Where(item => regEx.IsMatch(item.Ssn) || regEx.IsMatch(item.FullName) || regEx.IsMatch(item.SDate.ToString("dd/MM/yyyy")) ||
+                    List = new ObservableCollection<Indigent>(_list2.Where(item => regEx.IsMatch(item.Ssn) || regEx.IsMatch(item.FullName) || regEx.IsMatch(item.SDate.ToString("dd/MM/yyyy")) ||
                                                             regEx.IsMatch(item.RequestStatus2) || regEx.IsMatch(item.MotherName) || regEx.IsMatch(item.TypeAssistance) || regEx.IsMatch(item.SocialStatus2) ||
                                                             regEx.IsMatch(item.Nationality) || regEx.IsMatch(item.Phone) || regEx.IsMatch(item.Email) || regEx.IsMatch(item.PassportNO) ||
                                                             regEx.IsMatch(item.Gender2) || regEx.IsMatch(item.Scribe_ssn2) || regEx.IsMatch(item.Office_no2)).ToList<Indigent>());
@@ -143,8 +155,8 @@ namespace AL_Zakat_Fund_System.ViewModels
                 else
                 {
                     SelectItem = null;
-                    list.Clear();
-                    list.AddRange(_list2.ToList<Indigent>());
+                    List.Clear();
+                    List.AddRange(_list2.ToList<Indigent>());
                 }
             }
         }
@@ -204,7 +216,7 @@ namespace AL_Zakat_Fund_System.ViewModels
         {
             EditAccount view = new EditAccount();
             view.DataContext = new EditAccountViewModel(view, SelectItem.Ssn);
-            view.Owner = mWindow;
+            view.Owner = MainWindowVM.mWindow;
             bool? result = view.ShowDialog();
             if (result == true)
             {
@@ -226,7 +238,7 @@ namespace AL_Zakat_Fund_System.ViewModels
         {
             DisplayAccount view = new DisplayAccount();
             view.DataContext = new DisplayAccountViewModel(view, SelectItem.Ssn);
-            view.Owner = mWindow;
+            view.Owner = MainWindowVM.mWindow;
             bool? result = view.ShowDialog();
             if (result == true)
             {}
@@ -332,10 +344,10 @@ namespace AL_Zakat_Fund_System.ViewModels
         #endregion
 
         #region Construct
-        public ViewAccountDataViewModel(UserControl CP, Window window)
+        public ViewAccountDataViewModel(UserControl CP, MainWindowViewModel _mainWindowVM)
         {
             CurrentPage = CP;
-            mWindow = window;
+            MainWindowVM = _mainWindowVM;
 
             FillList();
 

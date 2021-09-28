@@ -20,7 +20,7 @@ namespace AL_Zakat_Fund_System.ViewModels
     {
         #region private Member
         private UserControl CurrentPage;
-        private Window mWindow;
+        private MainWindowViewModel _mainWindowVM;
         private ObservableCollection<Zakat> _list = new ObservableCollection<Zakat>();
         private ObservableCollection<Zakat> _list2 = new ObservableCollection<Zakat>();
         private string _SearchText;
@@ -60,7 +60,7 @@ namespace AL_Zakat_Fund_System.ViewModels
 
             try
             {
-                list.Clear();
+                List.Clear();
 
                 DBConnection.OpenConnection();
 
@@ -68,30 +68,32 @@ namespace AL_Zakat_Fund_System.ViewModels
 
                 while (DBConnection.reader.Read())
                 {
-                    TZ = new Zakat();
-                    TZ.Zakat_id = DBConnection.reader.GetInt32(0);
-                    TZ.Name = DBConnection.reader.GetString(1);
-                    TZ.Address = DBConnection.reader.GetString(2);
-                    TZ.SDate = DBConnection.reader.GetDateTime(3);
-                    TZ.Amount = DBConnection.reader.GetDecimal(4).ToString();
-                    TZ.ReceiptNO = DBConnection.reader.GetInt32(5).ToString();
-                    TZ.ZType2 = DBConnection.reader.GetString(6);
-                    TZ.ZCalss = DBConnection.reader.GetString(7);
-                    TZ.InstrumentNo = DBConnection.reader.GetString(8);
-                    TZ.Phone = DBConnection.reader.GetString(9);
-                    TZ.Email = DBConnection.reader.GetString(10);
-                    TZ.CaseDeposit2 = DBConnection.reader.GetString(11);
-                    TZ.Convrsion2 = DBConnection.reader.GetString(12);
-                    TZ.Collector2 = DBConnection.reader.GetString(13);
-                    TZ.Activity2 = DBConnection.reader.GetString(14);
-                    TZ.Migration2 = DBConnection.reader.GetString(15);
-                    TZ.Colle_ssn2 = DBConnection.reader.GetString(16);
-                    TZ.Office_no2 = DBConnection.reader.GetString(17);
+                    TZ = new Zakat
+                    {
+                        Zakat_id = DBConnection.reader.GetInt32(0),
+                        Name = DBConnection.reader.GetString(1),
+                        Address = DBConnection.reader.GetString(2),
+                        SDate = DBConnection.reader.GetDateTime(3),
+                        Amount = DBConnection.reader.GetDecimal(4).ToString(),
+                        ReceiptNO = DBConnection.reader.GetInt32(5).ToString(),
+                        ZType2 = DBConnection.reader.GetString(6),
+                        ZCalss = DBConnection.reader.GetString(7),
+                        InstrumentNo = DBConnection.reader.GetString(8),
+                        Phone = DBConnection.reader.GetString(9),
+                        Email = DBConnection.reader.GetString(10),
+                        CaseDeposit2 = DBConnection.reader.GetString(11),
+                        Convrsion2 = DBConnection.reader.GetString(12),
+                        Collector2 = DBConnection.reader.GetString(13),
+                        Activity2 = DBConnection.reader.GetString(14),
+                        Migration2 = DBConnection.reader.GetString(15),
+                        Colle_ssn2 = DBConnection.reader.GetString(16),
+                        Office_no2 = DBConnection.reader.GetString(17)
+                    };
 
-                    list.Add(TZ);
+                    List.Add(TZ);
                 }
                 _list2.Clear();
-                _list2.AddRange(list.ToList<Zakat>());
+                _list2.AddRange(List.ToList<Zakat>());
             }
             catch (Exception ex)
             {
@@ -108,8 +110,12 @@ namespace AL_Zakat_Fund_System.ViewModels
         #endregion
 
         #region public properties
-
-        public ObservableCollection<Zakat> list
+        public MainWindowViewModel MainWindowVM
+        {
+            get { return _mainWindowVM; }
+            set { SetProperty(ref _mainWindowVM, value); }
+        }
+        public ObservableCollection<Zakat> List
         {
             get { return _list; }
             set { SetProperty(ref _list, value); }
@@ -132,7 +138,7 @@ namespace AL_Zakat_Fund_System.ViewModels
                 {
                     SelectItem = null;
                     Regex regEx = new Regex(_SearchText.ToString(), RegexOptions.IgnoreCase);
-                    list = new ObservableCollection<Zakat>(_list2.Where(item => regEx.IsMatch(item.Name) || regEx.IsMatch(item.Address) || regEx.IsMatch(item.SDate.ToString("dd/MM/yyyy")) ||
+                    List = new ObservableCollection<Zakat>(_list2.Where(item => regEx.IsMatch(item.Name) || regEx.IsMatch(item.Address) || regEx.IsMatch(item.SDate.ToString("dd/MM/yyyy")) ||
                                                             regEx.IsMatch(item.Amount) || regEx.IsMatch(item.ReceiptNO) || regEx.IsMatch(item.ZType2) || regEx.IsMatch(item.ZCalss) ||
                                                             regEx.IsMatch(item.InstrumentNo) || regEx.IsMatch(item.Phone) || regEx.IsMatch(item.Email) || regEx.IsMatch(item.CaseDeposit2) ||
                                                             regEx.IsMatch(item.Convrsion2) || regEx.IsMatch(item.Collector2) || regEx.IsMatch(item.Activity2) || regEx.IsMatch(item.Migration2)
@@ -141,8 +147,8 @@ namespace AL_Zakat_Fund_System.ViewModels
                 else
                 {
                     SelectItem = null;
-                    list.Clear();
-                    list.AddRange(_list2.ToList<Zakat>());
+                    List.Clear();
+                    List.AddRange(_list2.ToList<Zakat>());
                 }
             }
         }
@@ -203,7 +209,7 @@ namespace AL_Zakat_Fund_System.ViewModels
         {
             ModifyZakat view = new ModifyZakat();
             view.DataContext = new ModifyZakatViewModel(view, SelectItem.Zakat_id);
-            view.Owner = mWindow;
+            view.Owner = MainWindowVM.mWindow;
             bool? result = view.ShowDialog();
             if (result == true)
             {
@@ -225,7 +231,7 @@ namespace AL_Zakat_Fund_System.ViewModels
         {
             DisplayZakat view = new DisplayZakat();
             view.DataContext = new DisplayZakatViewModel(view, SelectItem.Zakat_id);
-            view.Owner = mWindow;
+            view.Owner = MainWindowVM.mWindow;
             view.Show();
 
         }
@@ -397,10 +403,10 @@ namespace AL_Zakat_Fund_System.ViewModels
         #endregion
 
         #region Construct
-        public TransferZakatViewModel(UserControl CP, Window window)
+        public TransferZakatViewModel(UserControl CP, MainWindowViewModel _mainWindowVM)
         {
             CurrentPage = CP;
-            mWindow = window;
+            MainWindowVM = _mainWindowVM;
 
             FillList();
 

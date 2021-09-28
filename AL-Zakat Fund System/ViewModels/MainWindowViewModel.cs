@@ -24,7 +24,7 @@ namespace AL_Zakat_Fund_System.ViewModels
 
         private string _EmpName;
 
-        private readonly Window mWindow;
+        public readonly Window mWindow;
         private object _Page;
 
         private Cursor _Cursor;
@@ -53,6 +53,65 @@ namespace AL_Zakat_Fund_System.ViewModels
         private Visibility _Scribe;
         private Visibility _Observer;
         private Visibility _Supervisor;
+        private Visibility _SuperAdmin;
+
+
+        // permissions
+        #region menu list
+        private Visibility _DatabaseBackup = Visibility.Visible;
+        private Visibility _DatabaseRestore = Visibility.Visible;
+        private Visibility _ContactStatusVisibility = Visibility.Visible;
+        private Visibility _SwitchView = Visibility.Collapsed;
+        #endregion
+
+        #region AccountPoor
+        private Visibility _PageViewAccountPoor;
+        private Visibility _PageOpenAccountPoor;
+        private Visibility _PageEidtAccountPoor;
+        private Visibility _PagedeleteAccountPoor;
+        private Visibility _ReportApplicant;
+        private Visibility _ReportAssistance;
+        #endregion
+
+        #region RecordPoor
+        private Visibility _PageViweRecordPoor;
+        private Visibility _PageOpenRecordPoor;
+        private Visibility _PageEditRecordPoor;
+        private Visibility _PageDeleteRecordPoor;
+        #endregion
+
+        #region DeliverRecord
+        private Visibility _PageViweDeliverRecord;
+        private Visibility _PageOpenDeliverRecord;
+        private Visibility _PageEditDeliverRecord;
+        private Visibility _PageDeleteDeliverRecord;
+        private Visibility _ReportSocialResearch;
+        #endregion
+
+        #region ExchangePermission
+        private Visibility _PageViweExchangePermission;
+        private Visibility _PageOpenExchangePermission;
+        private Visibility _PageEditExchangePermission;
+        private Visibility _PageDeletExchangePermission;
+        private Visibility _ReportExpenses;
+        #endregion
+
+        #region Zakat
+        private Visibility _PageViweZakat;
+        private Visibility _PageOpenZakat;
+        private Visibility _PageEditZakat;
+        private Visibility _PageDeletZakat;
+        private Visibility _PageTransferZakat;
+        private Visibility _ReportNumberZakat;
+        private Visibility _ReportCollectZakat;
+        private Visibility _ReportZakat;
+        #endregion
+
+        #region PageViewFollowUpDataObserver
+        private Visibility _PageViewFollowUpDataObserver;
+        #endregion
+
+
         #endregion
 
         #region reason not use this method because they causes slow startup
@@ -101,31 +160,71 @@ namespace AL_Zakat_Fund_System.ViewModels
 
         private void GetPriv(int priv)
         {
+            SuperAdmin = Supervisor = SwitchView = Visibility.Collapsed;
+            switch (priv)
+            {
+                case 1:
+                    SelectPage(priv);
+                    break;
+                case 2:
+                    SelectPage(priv);
+                    break;
+                case 3:
+                    SelectPage(priv);
+                    break;
+                case 4:
+                    SelectPage(priv);
+                    break;
+
+                case 10:
+                    SwitchView = Supervisor = Visibility.Visible;
+                    SelectPage(3);
+                    break;
+
+                case 11:
+                    SwitchView = SuperAdmin = Supervisor = Visibility.Visible;
+                    SelectPage(3);
+                    break;
+            }
+
+        }
+
+        public void SelectPage(int priv)
+        {
+            Collector = Courier = Scribe = Observer = Visibility.Collapsed;
+            PageViweZakat = PageOpenZakat = PageEditZakat = PageDeletZakat = PageTransferZakat = ReportNumberZakat = ReportCollectZakat = ReportZakat = Visibility.Collapsed;
+            PageViweExchangePermission = PageOpenExchangePermission = PageEditExchangePermission = PageDeletExchangePermission = ReportExpenses = Visibility.Collapsed;
+            PageViewAccountPoor = PageOpenAccountPoor = PageEidtAccountPoor = PagedeleteAccountPoor = ReportApplicant = ReportAssistance = Visibility.Collapsed;
+            PageViweRecordPoor = PageOpenRecordPoor = PageEditRecordPoor = PageDeleteRecordPoor = Visibility.Collapsed;
+            PageViweDeliverRecord = PageOpenDeliverRecord = PageEditDeliverRecord = PageDeleteDeliverRecord = ReportSocialResearch = Visibility.Collapsed;
+            PageViewFollowUpDataObserver = Visibility.Collapsed;
             switch (priv)
             {
                 case 1:
                     Page = new mainCollector();// main page for user
                     Collector = Visibility.Visible;
-                    Courier = Scribe = Observer = Visibility.Collapsed;
+                    PageViweZakat = PageOpenZakat = PageEditZakat = PageDeletZakat = PageTransferZakat = ReportNumberZakat = ReportCollectZakat = ReportZakat = Visibility.Visible;
                     break;
                 case 2:
                     Page = new mainCourier();
                     Courier = Visibility.Visible;
-                    Collector = Scribe = Observer = Visibility.Collapsed;
+                    PageViweExchangePermission = PageOpenExchangePermission = PageEditExchangePermission = PageDeletExchangePermission = ReportExpenses = Visibility.Visible;
                     break;
                 case 3:
                     Page = new mainScribe();
                     Scribe = Visibility.Visible;
-                    Courier = Collector = Observer = Visibility.Collapsed;
+                    PageViewAccountPoor = PageOpenAccountPoor = PageEidtAccountPoor = PagedeleteAccountPoor = ReportApplicant = ReportAssistance = Visibility.Visible;
+                    PageViweRecordPoor = PageOpenRecordPoor = PageEditRecordPoor = PageDeleteRecordPoor = Visibility.Visible;
+                    PageViweDeliverRecord = PageOpenDeliverRecord = PageEditDeliverRecord = PageDeleteDeliverRecord = ReportSocialResearch = Visibility.Visible;
                     break;
                 case 4:
                     Page = new mainObserver();
                     Observer = Visibility.Visible;
-                    Courier = Scribe = Collector = Visibility.Collapsed;
+                    PageViewFollowUpDataObserver = Visibility.Visible;
                     break;
             }
 
-        }
+            }
 
         public void ZeroThickness()
         {
@@ -278,6 +377,68 @@ namespace AL_Zakat_Fund_System.ViewModels
             get { return _Supervisor; }
             set { SetProperty(ref _Supervisor, value); }
         }
+        public Visibility SuperAdmin
+        {
+            get { return _SuperAdmin; }
+            set { SetProperty(ref _SuperAdmin, value); }
+        }
+
+
+        #region menu list
+        public Visibility DatabaseBackup { get => _DatabaseBackup; set => SetProperty(ref _DatabaseBackup, value); }
+        public Visibility DatabaseRestore { get => _DatabaseRestore; set => SetProperty(ref _DatabaseRestore, value); }
+        public Visibility ContactStatusVisibility { get => _ContactStatusVisibility; set => SetProperty(ref _ContactStatusVisibility, value); }
+        public Visibility SwitchView { get => _SwitchView; set => SetProperty(ref _SwitchView, value); }
+        #endregion
+
+        #region AccountPoor
+        public Visibility PageViewAccountPoor { get => _PageViewAccountPoor; set => SetProperty(ref _PageViewAccountPoor, value); }
+        public Visibility PageOpenAccountPoor { get => _PageOpenAccountPoor; set => SetProperty(ref _PageOpenAccountPoor, value); }
+        public Visibility PageEidtAccountPoor { get => _PageEidtAccountPoor; set => SetProperty(ref _PageEidtAccountPoor, value); }
+        public Visibility PagedeleteAccountPoor { get => _PagedeleteAccountPoor; set => SetProperty(ref _PagedeleteAccountPoor, value); }
+        public Visibility ReportApplicant { get => _ReportApplicant; set => SetProperty(ref _ReportApplicant, value); }
+        public Visibility ReportAssistance { get => _ReportAssistance; set => SetProperty(ref _ReportAssistance, value); }
+        #endregion
+
+        #region RecordPoor
+        public Visibility PageViweRecordPoor { get => _PageViweRecordPoor; set => SetProperty(ref _PageViweRecordPoor, value); }
+        public Visibility PageOpenRecordPoor { get => _PageOpenRecordPoor; set => SetProperty(ref _PageOpenRecordPoor, value); }
+        public Visibility PageEditRecordPoor { get => _PageEditRecordPoor; set => SetProperty(ref _PageEditRecordPoor, value); }
+        public Visibility PageDeleteRecordPoor { get => _PageDeleteRecordPoor; set => SetProperty(ref _PageDeleteRecordPoor, value); }
+        #endregion
+
+        #region DeliverRecord
+        public Visibility PageViweDeliverRecord { get => _PageViweDeliverRecord; set => SetProperty(ref _PageViweDeliverRecord, value); }
+        public Visibility PageOpenDeliverRecord { get => _PageOpenDeliverRecord; set => SetProperty(ref _PageOpenDeliverRecord, value); }
+        public Visibility PageEditDeliverRecord { get => _PageEditDeliverRecord; set => SetProperty(ref _PageEditDeliverRecord, value); }
+        public Visibility PageDeleteDeliverRecord { get => _PageDeleteDeliverRecord; set => SetProperty(ref _PageDeleteDeliverRecord, value); }
+        public Visibility ReportSocialResearch { get => _ReportSocialResearch; set => SetProperty(ref _ReportSocialResearch, value); }
+
+        #endregion
+
+        #region ExchangePermission
+        public Visibility PageViweExchangePermission { get => _PageViweExchangePermission; set => SetProperty(ref _PageViweExchangePermission, value); }
+        public Visibility PageOpenExchangePermission { get => _PageOpenExchangePermission; set => SetProperty(ref _PageOpenExchangePermission, value); }
+        public Visibility PageEditExchangePermission { get => _PageEditExchangePermission; set => SetProperty(ref _PageEditExchangePermission, value); }
+        public Visibility PageDeletExchangePermission { get => _PageDeletExchangePermission; set => SetProperty(ref _PageDeletExchangePermission, value); }
+        public Visibility ReportExpenses { get => _ReportExpenses; set => SetProperty(ref _ReportExpenses, value); }
+        #endregion
+
+        #region Zakat
+        public Visibility PageViweZakat { get => _PageViweZakat; set => SetProperty(ref _PageViweZakat, value); }
+        public Visibility PageOpenZakat { get => _PageOpenZakat; set => SetProperty(ref _PageOpenZakat, value); }
+        public Visibility PageEditZakat { get => _PageEditZakat; set => SetProperty(ref _PageEditZakat, value); }
+        public Visibility PageDeletZakat { get => _PageDeletZakat; set => SetProperty(ref _PageDeletZakat, value); }
+        public Visibility PageTransferZakat { get => _PageTransferZakat; set => SetProperty(ref _PageTransferZakat, value); }
+        public Visibility ReportNumberZakat { get => _ReportNumberZakat; set => SetProperty(ref _ReportNumberZakat, value); }
+        public Visibility ReportCollectZakat { get => _ReportCollectZakat; set => SetProperty(ref _ReportCollectZakat, value); }
+        public Visibility ReportZakat { get => _ReportZakat; set => SetProperty(ref _ReportZakat, value); }
+        #endregion
+
+        #region PageViewFollowUpDataObserver
+        public Visibility PageViewFollowUpDataObserver { get => _PageViewFollowUpDataObserver; set => SetProperty(ref _PageViewFollowUpDataObserver, value); }
+        #endregion
+
         #endregion
 
         #endregion
@@ -335,8 +496,9 @@ namespace AL_Zakat_Fund_System.ViewModels
 
         #region Report Assistance
         public DelegateCommand ReportAssistanceCommand { get; set; }
+
         #endregion
-        
+
         #endregion
 
         #endregion
@@ -391,7 +553,7 @@ namespace AL_Zakat_Fund_System.ViewModels
         {
             Page = null;
             ZeroThickness();
-            GetPriv(int.Parse(sender));
+            SelectPage(int.Parse(sender));
         }
         #endregion
 
@@ -631,7 +793,7 @@ namespace AL_Zakat_Fund_System.ViewModels
             ZeroThickness();
             ViewAccountBorderThickness = LeftBorderThickness;
             PageVAD = new ViewAccountData();
-            PageVAD.DataContext = new ViewAccountDataViewModel(PageVAD, mWindow);
+            PageVAD.DataContext = new ViewAccountDataViewModel(PageVAD, this);
             Page = PageVAD;
 
             Cursor = saveCursor;
@@ -644,7 +806,7 @@ namespace AL_Zakat_Fund_System.ViewModels
             ZeroThickness();
             ViewAuthorizeExpenditureBorderThickness = LeftBorderThickness;
             PageVEPD = new ViewExchangePermissionData();
-            PageVEPD.DataContext = new ViewExchangePermissionDataViewModel(PageVEPD, mWindow);
+            PageVEPD.DataContext = new ViewExchangePermissionDataViewModel(PageVEPD, this);
             Page = PageVEPD;
 
             Cursor = saveCursor;
@@ -657,7 +819,7 @@ namespace AL_Zakat_Fund_System.ViewModels
             ZeroThickness();
             ViewFollowUpBorderThickness = LeftBorderThickness;
             PageVFD = new ViewFollowUpData();
-            PageVFD.DataContext = new ViewFollowUpDataViewModel(PageVFD, mWindow);
+            PageVFD.DataContext = new ViewFollowUpDataViewModel(PageVFD, this);
             Page = PageVFD;
 
             Cursor = saveCursor;
@@ -670,7 +832,7 @@ namespace AL_Zakat_Fund_System.ViewModels
             ZeroThickness();
             ViewFollowUpObserverBorderThickness = LeftBorderThickness;
             PageVFDO = new ViewFollowUpDataObserver();
-            PageVFDO.DataContext = new ViewFollowUpDataObserverViewModel(PageVFDO, mWindow);
+            PageVFDO.DataContext = new ViewFollowUpDataObserverViewModel(PageVFDO, this);
             Page = PageVFDO;
 
             Cursor = saveCursor;
@@ -683,7 +845,7 @@ namespace AL_Zakat_Fund_System.ViewModels
             ZeroThickness();
             ViewRecordBorderThickness = LeftBorderThickness;
             PageVRD = new ViewRecordData();
-            PageVRD.DataContext = new ViewRecordDataViewModel(PageVRD, mWindow);
+            PageVRD.DataContext = new ViewRecordDataViewModel(PageVRD, this);
             Page = PageVRD;
 
             Cursor = saveCursor;
@@ -696,7 +858,7 @@ namespace AL_Zakat_Fund_System.ViewModels
             ZeroThickness();
             ViewZakatBorderThickness = LeftBorderThickness;
             PageVZD = new ViewZakatData();
-            PageVZD.DataContext = new ViewZakatDataViewModel(PageVZD, mWindow);
+            PageVZD.DataContext = new ViewZakatDataViewModel(PageVZD, this);
             Page = PageVZD;
 
             Cursor = saveCursor;
@@ -709,7 +871,7 @@ namespace AL_Zakat_Fund_System.ViewModels
             ZeroThickness();
             TransferZakatBorderThickness = LeftBorderThickness;
             PageTZD = new TransferZakat();
-            PageTZD.DataContext = new TransferZakatViewModel(PageTZD, mWindow);
+            PageTZD.DataContext = new TransferZakatViewModel(PageTZD, this);
             Page = PageTZD;
 
             Cursor = saveCursor;
@@ -851,15 +1013,7 @@ namespace AL_Zakat_Fund_System.ViewModels
             EmpName = Properties.Settings.Default.EmpName;
 
             // priv Employee
-            if (Properties.Settings.Default.EmpPriv == 10)
-            {
-                GetPriv(3);
-            }
-            else
-            {
-                GetPriv(Properties.Settings.Default.EmpPriv);
-                Supervisor = Visibility.Collapsed;
-            }
+            GetPriv(Properties.Settings.Default.EmpPriv);
 
             // When close window call OnWindowClosing function
             mWindow.Closing += OnWindowClosing;

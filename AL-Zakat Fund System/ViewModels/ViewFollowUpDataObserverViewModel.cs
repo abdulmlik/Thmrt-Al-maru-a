@@ -20,7 +20,7 @@ namespace AL_Zakat_Fund_System.ViewModels
     {
         #region private Member
         private UserControl CurrentPage;
-        private Window mWindow;
+        private MainWindowViewModel _mainWindowVM;
         private ObservableCollection<Follow_up> _list = new ObservableCollection<Follow_up>();
         private ObservableCollection<Follow_up> _list2 = new ObservableCollection<Follow_up>();
         private string _SearchText;
@@ -103,6 +103,11 @@ namespace AL_Zakat_Fund_System.ViewModels
 
         #region public properties
 
+        public MainWindowViewModel MainWindowVM
+        {
+            get { return _mainWindowVM; }
+            set { SetProperty(ref _mainWindowVM, value); }
+        }
         public ObservableCollection<Follow_up> List
         {
             get { return _list; }
@@ -195,7 +200,7 @@ namespace AL_Zakat_Fund_System.ViewModels
         {
             EditFollowUpObserver view = new EditFollowUpObserver();
             view.DataContext = new EditFollowUpObserverViewModel(view, SelectItem.DecisionNO);
-            view.Owner = mWindow;
+            view.Owner = MainWindowVM.mWindow;
             bool? result = view.ShowDialog();
             if (result == true)
             {
@@ -217,7 +222,7 @@ namespace AL_Zakat_Fund_System.ViewModels
         {
             DisplayFollowUpObserver view = new DisplayFollowUpObserver();
             view.DataContext = new DisplayFollowUpObserverViewModel(view, SelectItem.DecisionNO);
-            view.Owner = mWindow;
+            view.Owner = MainWindowVM.mWindow;
             bool? result = view.ShowDialog();
             if (result == true)
             { }
@@ -262,10 +267,10 @@ namespace AL_Zakat_Fund_System.ViewModels
         #endregion
 
         #region Construct
-        public ViewFollowUpDataObserverViewModel(UserControl CP, Window window)
+        public ViewFollowUpDataObserverViewModel(UserControl CP,MainWindowViewModel _mainWindowVM)
         {
             CurrentPage = CP;
-            mWindow = window;
+            MainWindowVM = _mainWindowVM;
 
             FillList();
 

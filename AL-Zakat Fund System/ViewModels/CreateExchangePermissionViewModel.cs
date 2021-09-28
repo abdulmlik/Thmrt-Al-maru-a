@@ -16,8 +16,8 @@ namespace AL_Zakat_Fund_System.ViewModels
     class CreateExchangePermissionViewModel : AuthorizeExpenditure
     {
         #region private Member
-        private UserControl CurrentPage;
-        private MainWindowViewModel mainWindowVM;
+        private readonly UserControl CurrentPage;
+        private readonly MainWindowViewModel mainWindowVM;
         #endregion
 
         #region public properties
@@ -35,7 +35,6 @@ namespace AL_Zakat_Fund_System.ViewModels
         #region save Authorize Expenditure
         private void CreateAuthorizeExpenditureDatabaseExecute()
         {
-            int succ = 0;
             try
             {
                 DBConnection.OpenConnection();
@@ -87,6 +86,8 @@ namespace AL_Zakat_Fund_System.ViewModels
                 DBConnection.cmd.Parameters["@Success"].Direction = ParameterDirection.Output;
 
                 DBConnection.cmd.ExecuteNonQuery();
+
+                int succ = 0;
 
                 succ = (int)DBConnection.cmd.Parameters["@Success"].Value;
 

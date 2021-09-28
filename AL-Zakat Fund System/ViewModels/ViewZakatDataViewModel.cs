@@ -20,7 +20,7 @@ namespace AL_Zakat_Fund_System.ViewModels
     {
         #region private Member
         private UserControl CurrentPage;
-        private Window mWindow;
+        private MainWindowViewModel _mainWindowVM;
         private ObservableCollection<Zakat> _list = new ObservableCollection<Zakat>();
         private ObservableCollection<Zakat> _list2 = new ObservableCollection<Zakat>();
         private string _SearchText;
@@ -109,6 +109,11 @@ namespace AL_Zakat_Fund_System.ViewModels
 
         #region public properties
 
+        public MainWindowViewModel MainWindowVM
+        {
+            get { return _mainWindowVM; }
+            set { SetProperty(ref _mainWindowVM, value); }
+        }
         public ObservableCollection<Zakat> list
         {
             get { return _list; }
@@ -202,7 +207,7 @@ namespace AL_Zakat_Fund_System.ViewModels
         {
             ModifyZakat view = new ModifyZakat();
             view.DataContext = new ModifyZakatViewModel(view, SelectItem.Zakat_id);
-            view.Owner = mWindow;
+            view.Owner = MainWindowVM.mWindow;
             bool? result = view.ShowDialog();
             if(result == true)
             {
@@ -224,7 +229,7 @@ namespace AL_Zakat_Fund_System.ViewModels
         {
             DisplayZakat view = new DisplayZakat();
             view.DataContext = new DisplayZakatViewModel(view, SelectItem.Zakat_id);
-            view.Owner = mWindow;
+            view.Owner = MainWindowVM.mWindow;
             view.Show();
 
         }
@@ -328,10 +333,10 @@ namespace AL_Zakat_Fund_System.ViewModels
         #endregion
 
         #region Construct
-        public ViewZakatDataViewModel(UserControl CP, Window window)
+        public ViewZakatDataViewModel(UserControl CP, MainWindowViewModel _mainWindowVM)
         {
             CurrentPage = CP;
-            mWindow = window;
+            MainWindowVM = _mainWindowVM;
 
             FillList();
 

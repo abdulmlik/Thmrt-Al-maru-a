@@ -42,7 +42,7 @@
                     <TextBlock Text="تحديث" Margin="10 0 0 0" />
                 </StackPanel>
             </Button>
-            <Button Command="{Binding EditCommand}" Style="{StaticResource viewButtonStyleSearch}" >
+            <Button Visibility="{Binding MainWindowVM.PageViewFollowUpDataObserver}" Command="{Binding EditCommand}" Style="{StaticResource viewButtonStyleSearch}" >
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="&#xf044;" Margin="0 3 0 0" FontSize="18" FontFamily="{StaticResource FontAwesome5ProLight}" />
                     <TextBlock Text="تعديل" Margin="7 0 0 0" />

@@ -20,7 +20,7 @@ namespace AL_Zakat_Fund_System.ViewModels
     {
         #region private Member
         private UserControl CurrentPage;
-        private Window mWindow;
+        private MainWindowViewModel _mainWindowVM;
         private ObservableCollection<AuthorizeExpenditure> _list = new ObservableCollection<AuthorizeExpenditure>();
         private ObservableCollection<AuthorizeExpenditure> _list2 = new ObservableCollection<AuthorizeExpenditure>();
         private string _SearchText;
@@ -102,6 +102,11 @@ namespace AL_Zakat_Fund_System.ViewModels
 
         #region public properties
 
+        public MainWindowViewModel MainWindowVM
+        {
+            get { return _mainWindowVM; }
+            set { SetProperty(ref _mainWindowVM, value); }
+        }
         public ObservableCollection<AuthorizeExpenditure> List
         {
             get { return _list; }
@@ -194,7 +199,7 @@ namespace AL_Zakat_Fund_System.ViewModels
         {
             ModifyExchangePermission view = new ModifyExchangePermission();
             view.DataContext = new ModifyExchangePermissionViewModel(view, SelectItem.CommitteeDecisionNO);
-            view.Owner = mWindow;
+            view.Owner = MainWindowVM.mWindow;
             bool? result = view.ShowDialog();
             if (result == true)
             {
@@ -216,7 +221,7 @@ namespace AL_Zakat_Fund_System.ViewModels
         {
             DisplayAuthorizeExpenditure view = new DisplayAuthorizeExpenditure();
             view.DataContext = new DisplayAuthorizeExpenditureViewModel(view, SelectItem.CommitteeDecisionNO);
-            view.Owner = mWindow;
+            view.Owner = MainWindowVM.mWindow;
             bool? result = view.ShowDialog();
             if (result == true)
             { }
@@ -325,10 +330,10 @@ namespace AL_Zakat_Fund_System.ViewModels
         #endregion
 
         #region Construct
-        public ViewExchangePermissionDataViewModel(UserControl CP, Window window)
+        public ViewExchangePermissionDataViewModel(UserControl CP, MainWindowViewModel _mainWindowVM)
         {
             CurrentPage = CP;
-            mWindow = window;
+            MainWindowVM = _mainWindowVM;
 
             FillList();
 

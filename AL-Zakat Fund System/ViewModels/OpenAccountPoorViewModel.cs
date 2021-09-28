@@ -16,8 +16,8 @@ namespace AL_Zakat_Fund_System.ViewModels
     class OpenAccountPoorViewModel : Indigent
     {
         #region private Member
-        private UserControl CurrentPage;
-        private MainWindowViewModel mainWindowVM;
+        private readonly UserControl CurrentPage;
+        private readonly MainWindowViewModel mainWindowVM;
         #endregion
 
         #region public properties
@@ -37,9 +37,9 @@ namespace AL_Zakat_Fund_System.ViewModels
         #region save AccountPoor
         private void OpenAccountPoorDatabaseExecute()
         {
-            int succ = 0;
             try
             {
+                int succ = 0;
                 DBConnection.OpenConnection();
 
                 DBConnection.cmd.CommandType = CommandType.StoredProcedure;
