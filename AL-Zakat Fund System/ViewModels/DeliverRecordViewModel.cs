@@ -17,8 +17,8 @@ namespace AL_Zakat_Fund_System.ViewModels
     class DeliverRecordViewModel : Follow_up
     {
         #region private Member
-        private UserControl CurrentPage;
-        private MainWindowViewModel mainWindowVM;
+        private readonly UserControl CurrentPage;
+        private readonly MainWindowViewModel mainWindowVM;
 
         private Employee _employee;
         private ObservableCollection<Employee> _employees = new ObservableCollection<Employee>();
@@ -42,7 +42,7 @@ namespace AL_Zakat_Fund_System.ViewModels
             try
             {
                 DBConnection.OpenConnection();
-                DBConnection.reader = DBConnection.cmd.ExecuteReader();
+                // DBConnection.reader = DBConnection.cmd.ExecuteReader();
 
                 // succ = 1 Success or succ = 0 fail or succ = 2 not found
                 //succ = (int)DBConnection.cmd.Parameters["@Success"].Value;
@@ -52,9 +52,11 @@ namespace AL_Zakat_Fund_System.ViewModels
 
                 while (DBConnection.reader.Read())
                 {
-                    TO = new Employee();
-                    TO.Ssn = DBConnection.reader.GetInt64(0);
-                    TO.FullName = DBConnection.reader.GetString(2);
+                    TO = new Employee
+                    {
+                        Ssn = DBConnection.reader.GetString(0),
+                        FullName = DBConnection.reader.GetString(2)
+                    };
 
                     employees.Add(TO);
                 }
@@ -103,7 +105,6 @@ namespace AL_Zakat_Fund_System.ViewModels
         #region save Deliver Record
         private void DeliverRecordDatabaseExecute()
         {
-            int succ = 0;
             try
             {
                 DBConnection.OpenConnection();
@@ -152,7 +153,7 @@ namespace AL_Zakat_Fund_System.ViewModels
 
                 DBConnection.cmd.ExecuteNonQuery();
 
-                succ = (int)DBConnection.cmd.Parameters["@Success"].Value;
+                int succ = (int)DBConnection.cmd.Parameters["@Success"].Value;
 
                 #region messge box
                 // It Was Stored in Database

@@ -232,6 +232,30 @@
                     </MenuItem.Icon>
                 </MenuItem>-->
             </MenuItem>
+
+            <MenuItem Header="الموظفين" Visibility="{Binding Observer}" HorizontalAlignment="Left" >
+                <MenuItem Visibility="{Binding PageNewEmploye}" Command="{Binding PageNewEmployeCommand}" Header="_إضافة موظف">
+                    <MenuItem.Icon>
+                        <TextBlock Text="&#xf53c;" FontFamily="{StaticResource FontAwesome5ProLight}" FontSize="{StaticResource FontSizeSmall}" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Visibility="{Binding PageEmployeList}" Command="{Binding PageEmployeListCommand}" Header="_إدارة الموظفين" >
+                    <MenuItem.Icon>
+                        <TextBlock Text="&#xf723;" FontFamily="{StaticResource FontAwesome5ProLight}" FontSize="{StaticResource FontSizeSmall}" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <Separator />
+                <MenuItem Header="التقارير" >
+                    <MenuItem.Icon>
+                        <TextBlock Text="&#xf65a;" FontFamily="{StaticResource FontAwesome5ProLight}" FontSize="{StaticResource FontSizeSmall}" />
+                    </MenuItem.Icon>
+                    <!-- <MenuItem Visibility="{Binding ReportEmploye}" Command="{Binding ReportEmployeCommand}" Header="الموظفين" >
+                        <MenuItem.Icon>
+                            <TextBlock Text="&#xf571;" FontFamily="{StaticResource FontAwesome5ProLight}" FontSize="{StaticResource FontSizeSmall}" />
+                        </MenuItem.Icon>
+                    </MenuItem> -->
+                </MenuItem>
+            </MenuItem>
             <MenuItem Header="المساعدة" HorizontalAlignment="Left">
                 <MenuItem Header="_مساعدة" >
                     <MenuItem.Icon>

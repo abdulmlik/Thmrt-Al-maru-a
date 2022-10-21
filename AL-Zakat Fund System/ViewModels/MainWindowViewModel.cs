@@ -9,12 +9,14 @@ using Prism.Mvvm;
 using System.Windows;
 using Microsoft.Win32;
 using AL_Zakat_Fund_System.Views;
+using AL_Zakat_Fund_System.Views.Employe;
 using AL_Zakat_Fund_System.Models;
 using AL_Zakat_Fund_System.Views.UserControlBackground;
 using System.Data.SqlClient;
 using System.Data;
 using System.IO;
 using System.Windows.Input;
+using AL_Zakat_Fund_System.ViewModels.Employe;
 
 namespace AL_Zakat_Fund_System.ViewModels
 {
@@ -111,6 +113,13 @@ namespace AL_Zakat_Fund_System.ViewModels
         private Visibility _PageViewFollowUpDataObserver;
         #endregion
 
+        #region Employes
+        private Visibility _PageEmployeList;
+        private Visibility _PageNewEmploye;
+        private Visibility _PageEidtEmploye;
+        private Visibility _PageDeletEmploye;
+        private Visibility _ReportEmployes;
+        #endregion
 
         #endregion
 
@@ -150,6 +159,9 @@ namespace AL_Zakat_Fund_System.ViewModels
         private ViewZakatData PageVZD;
 
         private TransferZakat PageTZD;
+
+
+        private EmployeList PageEL; //PageEmployeList
         #endregion
 
         #endregion
@@ -161,6 +173,11 @@ namespace AL_Zakat_Fund_System.ViewModels
         private void GetPriv(int priv)
         {
             SuperAdmin = Supervisor = SwitchView = Visibility.Collapsed;
+            PageEmployeList =
+                PageNewEmploye =
+                PageEidtEmploye=
+                PageDeletEmploye =
+                ReportEmployes= Visibility.Collapsed;
             switch (priv)
             {
                 case 1:
@@ -178,11 +195,20 @@ namespace AL_Zakat_Fund_System.ViewModels
 
                 case 10:
                     SwitchView = Supervisor = Visibility.Visible;
+                    PageEmployeList =
+                PageNewEmploye =
+                PageEidtEmploye =
+                PageDeletEmploye =
+                ReportEmployes = Visibility.Visible;
                     SelectPage(3);
                     break;
 
                 case 11:
-                    SwitchView = SuperAdmin = Supervisor = Visibility.Visible;
+                    SwitchView = SuperAdmin = Supervisor = Visibility.Visible; PageEmployeList =
+                 PageNewEmploye =
+                 PageEidtEmploye =
+                 PageDeletEmploye =
+                 ReportEmployes = Visibility.Visible;
                     SelectPage(3);
                     break;
             }
@@ -198,6 +224,8 @@ namespace AL_Zakat_Fund_System.ViewModels
             PageViweRecordPoor = PageOpenRecordPoor = PageEditRecordPoor = PageDeleteRecordPoor = Visibility.Collapsed;
             PageViweDeliverRecord = PageOpenDeliverRecord = PageEditDeliverRecord = PageDeleteDeliverRecord = ReportSocialResearch = Visibility.Collapsed;
             PageViewFollowUpDataObserver = Visibility.Collapsed;
+
+
             switch (priv)
             {
                 case 1:
@@ -439,6 +467,14 @@ namespace AL_Zakat_Fund_System.ViewModels
         public Visibility PageViewFollowUpDataObserver { get => _PageViewFollowUpDataObserver; set => SetProperty(ref _PageViewFollowUpDataObserver, value); }
         #endregion
 
+        #region Employes
+        public Visibility PageEmployeList { get => _PageEmployeList; set => SetProperty(ref _PageEmployeList, value); }
+        public Visibility PageNewEmploye { get => _PageNewEmploye; set => SetProperty(ref _PageNewEmploye, value); }
+        public Visibility PageEidtEmploye { get => _PageEidtEmploye; set => SetProperty(ref _PageEidtEmploye, value); }
+        public Visibility PageDeletEmploye { get => _PageDeletEmploye; set => SetProperty(ref _PageDeletEmploye, value); }
+        public Visibility ReportEmployes { get => _ReportEmployes; set => SetProperty(ref _ReportEmployes, value); }
+        #endregion
+
         #endregion
 
         #endregion
@@ -451,6 +487,7 @@ namespace AL_Zakat_Fund_System.ViewModels
         public DelegateCommand PageAddNewZakatCommand { get; set; }
         public DelegateCommand PageCreateExchangePermissionCommand { get; set; }
         public DelegateCommand PageDeliverRecordCommand { get; set; }
+        public DelegateCommand PageNewEmployeCommand { get; set; }
         #endregion
 
         #region file meun Command
@@ -472,6 +509,10 @@ namespace AL_Zakat_Fund_System.ViewModels
         public DelegateCommand PageViewFollowUpDataObserverCommand { get; set; }
         public DelegateCommand PageViewRecordDataCommand { get; set; }
         public DelegateCommand PageViewZakatDataCommand { get; set; }
+        public DelegateCommand PageEmployeListCommand { get; set; }
+        
+
+
         #endregion
 
         #region Report Window Command
@@ -876,6 +917,32 @@ namespace AL_Zakat_Fund_System.ViewModels
 
             Cursor = saveCursor;
         }
+        private void PageEmployeListExecute()
+        {
+            Cursor saveCursor = Cursor;
+            Cursor = Cursors.Wait;
+
+            ZeroThickness();
+            // TransferZakatBorderThickness = LeftBorderThickness;
+            PageEL = new EmployeList();
+            PageEL.DataContext = new EmployeListViewModel(PageEL, this);
+            Page = PageEL;
+
+            Cursor = saveCursor;
+        }
+        private void PageNewEmployeExecute()
+        {
+            Cursor saveCursor = Cursor;
+            Cursor = Cursors.Wait;
+
+            ZeroThickness();
+            // TransferZakatBorderThickness = LeftBorderThickness;
+            // PageNE = new NewEmploye();
+            // PageNE.DataContext = new NewEmployeViewModel(PageNE, this);
+            // Page = PageNE;
+
+            Cursor = saveCursor;
+        }
 
         #endregion
 
@@ -1036,6 +1103,9 @@ namespace AL_Zakat_Fund_System.ViewModels
 
             PageTransferZakatDataCommand = new DelegateCommand(PageTransferZakatDataExecute);
 
+            PageEmployeListCommand = new DelegateCommand(PageEmployeListExecute);
+            PageNewEmployeCommand = new DelegateCommand(PageNewEmployeExecute);
+            
             LogoutCommand = new DelegateCommand(LogOut);
             ContactStatusCommand = new DelegateCommand(ContactStatus);
             GetPrivCommand = new DelegateCommand<string>(GetPrivExecute);

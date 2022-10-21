@@ -19,10 +19,10 @@ namespace AL_Zakat_Fund_System.ViewModels
     class TransferZakatViewModel : BindableBase
     {
         #region private Member
-        private UserControl CurrentPage;
+        private readonly UserControl CurrentPage;
         private MainWindowViewModel _mainWindowVM;
         private ObservableCollection<Zakat> _list = new ObservableCollection<Zakat>();
-        private ObservableCollection<Zakat> _list2 = new ObservableCollection<Zakat>();
+        private readonly ObservableCollection<Zakat> _list2 = new ObservableCollection<Zakat>();
         private string _SearchText;
         private int _Start;
         private int _End;

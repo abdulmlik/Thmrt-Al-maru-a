@@ -19,10 +19,10 @@ namespace AL_Zakat_Fund_System.ViewModels
     class ViewFollowUpDataObserverViewModel : BindableBase
     {
         #region private Member
-        private UserControl CurrentPage;
+        private readonly UserControl CurrentPage;
         private MainWindowViewModel _mainWindowVM;
         private ObservableCollection<Follow_up> _list = new ObservableCollection<Follow_up>();
-        private ObservableCollection<Follow_up> _list2 = new ObservableCollection<Follow_up>();
+        private readonly ObservableCollection<Follow_up> _list2 = new ObservableCollection<Follow_up>();
         private string _SearchText;
         private int _Start;
         private int _End;
